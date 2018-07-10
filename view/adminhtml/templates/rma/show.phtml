@@ -1,0 +1,67 @@
+<?php
+	$id = $this->getRequest()->getParam('id');
+	$orderData = $this->getOrderData($id);
+	$reasons = $this->getReasons();
+	$conditions = $this->getConditions();
+	$status = $this->getStatus();
+    $rmaOrderObj = $this->getRmaOrder($id);
+?>
+<div class="block item-rma-req">
+    <fieldset class="fieldset admin__fieldset " id="item_fieldset">
+        <legend class="admin__legend legend">
+            <span><?php echo __('Items RMA Requested for');?></span>
+        </legend>
+        <br>
+        <div class="block-content">
+            <div class="table-wrapper">
+                <table class="admin__control-table">
+                    <thead>
+                        <tr>
+                            
+                            <th scope="col" class="col"><?php echo __('Product Name');?></th>
+                            <th scope="col" class="col"><?php echo __('SKU');?></th>
+                            <th scope="col" class="col"><?php echo __('Qty');?></th>
+                            <th scope="col" class="col"><?php echo __('Reason');?></th>
+                            <th scope="col" class="col"><?php echo __('Condition');?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($orderData as $orderItem):?>
+	                    <tr>
+							<td data-th="Product Name" class="col"><?php echo $orderItem['name']?></td>
+	                        <td data-th="SKU" class="col"><?php echo $orderItem['sku']?></td>
+	                        <td data-th="QTY" class="col"><?php echo (int)$orderItem['qty']?></td>
+	                        <td data-th="Reason" class="col"><?php echo $orderItem['reason']?></td>
+	                         <td data-th="Condition" class="col"><?php echo $orderItem['condition']?></td>
+	                               
+	                     </tr>
+	                <?php endforeach;?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content">
+        <form method="post" name="submit-return" id="submit-return" action="<?php echo $this->getUrl('rma/rma/save');?>">
+        <div class="admin__field field field required">
+            <label class="label admin__field-label" for="">
+                <span>Status</span>
+            </label>
+            <div class="admin__field-control control">
+                <input type="hidden" name="rma_id" value="<?php echo $id;?>">
+                <select class="select admin__control-select" name="adminstatus" data-validate="{required:true}" aria-required="true">
+                    <option value="">-- Select a Status --</option>
+                    <?php foreach($status as $state):?>
+						<option <?php if($state->getStatusId() == $rmaOrderObj->getStatus()):?>selected<?php endif;?> value="<?php echo $state->getStatusId();?>"><?php echo $state->getTitle();?></option>
+                    <?php endforeach;?>
+                </select>
+            </div> 
+        </div>
+        
+		<button type="submit" class="action primary">Submit</button>
+		</form>
+		</div>
+    </fieldset>
+</div>
+
+

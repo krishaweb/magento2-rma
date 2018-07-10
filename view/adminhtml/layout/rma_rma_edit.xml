@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="admin-2columns-left">
+	<body>
+		<referenceContainer name="content">
+        	<block class="Krishaweb\Rma\Block\Adminhtml\Show" name="rma_rma_show" template="Krishaweb_Rma::rma/show.phtml" />
+    	</referenceContainer>
+	</body>
+</page>

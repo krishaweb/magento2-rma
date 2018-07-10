@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Krishaweb_Rma::rma" title="Rma" module="Krishaweb_Rma" resource="Magento_Backend::content" sortOrder="10"/>
+
+		<add id="Krishaweb_Rma::showrma" title="Show All RMA" module="Krishaweb_Rma" resource="Krishaweb_Rma::showrma" sortOrder="11" parent="Krishaweb_Rma::rma" action="rma/rma/index" />
+		
+
+		<add id="Krishaweb_Rma::reason" title="Reason" module="Krishaweb_Rma" resource="Krishaweb_Rma::reason" sortOrder="13" parent="Krishaweb_Rma::rma" action="rma/reason/index" />
+		<add id="Krishaweb_Rma::condition" title="Condition" module="Krishaweb_Rma" resource="Krishaweb_Rma::condition" sortOrder="14" parent="Krishaweb_Rma::rma" action="rma/condition/index" />
+		<add id="Krishaweb_Rma::status" title="Status" module="Krishaweb_Rma" resource="Krishaweb_Rma::status" sortOrder="15" parent="Krishaweb_Rma::rma" action="rma/status/index" />
+
+
+		<add id="Krishaweb_Rma::congiguration" title="RMA Configuration" module="Krishaweb_Rma" resource="Krishaweb_Rma::congiguration" sortOrder="16" parent="Krishaweb_Rma::rma" action="adminhtml/system_config/edit/section/rma/" />
+
+
+	</menu>
+</config>

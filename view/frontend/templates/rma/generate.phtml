@@ -1,0 +1,101 @@
+<?php
+	$id = $this->getRequest()->getParam('id');
+	$orderData = $this->getOrderData($id);
+	$reasons = $this->getReasons();
+	$conditions = $this->getConditions();
+?>
+
+<div id="orderInfo">
+</div>
+
+<div class="block block-rma">
+	<div class="block-title">
+		<?php echo __('Items in this order');?>
+	</div>
+	<div class="block-content">
+			<form method="post" name="submit-return" id="submit-return" action="<?php echo $block->getUrl('rma/rma/save');?>">
+			<?php foreach($orderData as $orderItem):?>
+				<div class="block-item clearfix">
+					<input type="hidden" name="order_id" value="<?php echo $id
+					;?>">
+					<input type="hidden" name="item_id[<?php echo $orderItem['id']?>]" value="<?php echo $orderItem['id']?>">
+
+					<?php if(!count($this->checkRmaAvailable($orderItem['id']))):?>
+					<div class="rma-action">
+						<input type="checkbox" name="check[<?php echo $orderItem['id']?>]" value="on">
+					</div>
+					<?php else:?>	
+						<div class="rma-action">&nbsp;</div>
+					<?php endif;?>
+					<div class="rma-product-image">
+						<div class="thumb">
+							<img src="<?php echo $orderItem['img_url']?>">
+						</div>
+					</div>
+					<div class="rma-description">
+						<span class="name[<?php echo $orderItem['id']?>]"><?php echo $orderItem['name']?></span>
+						<?php if(array_key_exists('options', $orderItem) == true):?>
+							<?php foreach($orderItem['options'] as $option):?>
+								<span><?php echo $option['attribute']['label']?></span>
+								<span><?php echo $option['value']['label']?></span>
+							<?php endforeach;?>
+						<?php endif;?>
+
+					</div>
+
+					<?php if(!count($this->checkRmaAvailable($orderItem['id']))):?>
+
+					<div class="rma-reason-condition">
+						<div class="input-text">
+							<span style="display: none;">
+								<label><?php echo __('Qty'); ?></label>
+								<label><?php echo __('Qty Ordered'); ?></label>
+								<span><?php echo (int)$orderItem['qty'];?></span>
+							</span>
+							<input value="<?php echo (int)$orderItem['qty'];?>" type="hidden" name="qty_return[<?php echo $orderItem['id']?>]">
+						</div>
+						<div class="input-text">
+							<label><?php echo __('Reason'); ?></label>
+							<select name="reason[<?php echo $orderItem['id']?>]" class="reason">
+								<option value=""><?php echo __('Please Select');?></option>
+								<?php foreach($reasons as $reason):?>
+									<option value="<?php echo $reason->getTitle();?>"><?php echo $reason->getTitle();?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+						<div class="input-text">
+							<label><?php echo __('Condition'); ?></label>
+							<select name="condition[<?php echo $orderItem['id']?>]" class="condition">
+								<option value=""><?php echo __('Please Select');?></option>
+								<?php foreach($conditions as $condition):?>
+									<option value="<?php echo $condition->getTitle();?>"><?php echo $condition->getTitle();?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+					</div>
+					<?php else:?>
+						<div class="rma-reason-condition">
+							<?php $rmaObj = $this->getAvailableRma($orderItem['id'])?>
+							<span class="message">
+								<?php echo __('Already Registred for RMA');?>
+							</span>
+							<dl>
+								<dt><?php echo __('Reason :')?></dt>
+								<dd><?php echo $rmaObj->getReason();?></dd>
+							</dl>
+							<dl>
+								<dt><?php echo __('Condition :')?></dt>
+								<dd><?php echo $rmaObj->getCondition();?></dd>
+							</dl>
+							<dl style="display: none;">
+								<dt><?php echo __('Qty :')?></dt>
+								<dd><?php echo $rmaObj->getQtyReturn();?></dd>
+							</dl>
+						</div>
+					<?php endif;?>
+				</div>
+			<?php endforeach;?>
+			<button type="submit" class="action primary">Submit</button>
+		</form>
+	</div>
+</div>

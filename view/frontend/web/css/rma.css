@@ -1,0 +1,112 @@
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+.clearfix {
+	display: inline-block;
+}
+* html .clearfix {
+	height: 1%;
+}
+.clearfix {
+	display: block;
+}
+.block-rma{
+	padding: 0;
+	margin: 0;
+}
+.block-rma .block-title{
+	display: block;
+	width: 100%;
+	padding: 15px;
+	font-size: 16px;
+	text-transform: uppercase;
+	font-family: arial;
+	background-color: #f1f1f1;
+	margin-bottom: 15px;
+	font-weight: 700;
+}
+.block-rma .block-item{
+	display: block;
+	width: 100%;
+	background-color: #fff;
+	padding: 15px;
+	border: 1px solid #d1d1d1;
+	margin: 15px 0px;
+}
+.block-rma .rma-action{
+	float: left;
+	width: 5%;
+	position: relative;
+}
+
+.block-rma .rma-product-image{
+	float: left;
+	width: 15%;
+}
+
+.block-rma .rma-product-image .thumb{
+	height: 150px;
+	border: 1px solid #d1d1d1;
+	position: relative;
+}
+.block-rma .rma-product-image .thumb img{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	display: block;
+}
+.block-rma .rma-description{
+	float: left;
+	width: 40%;
+	padding: 0 15px;
+}
+.block-rma .rma-reason-condition{
+	float: left;
+	width: 32%;
+	padding: 0 15px;
+}
+.block-rma .rma-reason-condition .input-text{
+	display: block;
+	margin-bottom: 10px;
+	position: relative;
+}
+.block-rma .rma-reason-condition .input-text label{
+	display: block;
+	margin-bottom: 5px;
+	position: relative;
+	font-weight: 600;
+}
+.block-rma .rma-reason-condition .message{
+	display: block;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+.block-rma .rma-reason-condition dl{
+	padding: 0;
+	margin: 0 0 10px;
+	width: 100%;
+}
+.block-rma .rma-reason-condition dt{
+	display: inline-block;
+	vertical-align: top;
+	font-size: 14px;
+	font-weight: 600;
+	padding: 0;
+	margin: 0;
+}
+.block-rma .rma-reason-condition dd{
+	display: inline-block;
+	vertical-align: top;
+	font-size: 14px;
+	font-weight: 400;
+	padding: 0;
+	margin: 0;
+}
