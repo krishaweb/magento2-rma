@@ -32,10 +32,10 @@ Admin can add multiple Reasons and Conditions from that custome can select.
 
 After placing Return By Customer Admin can select the status of that order like Approved, Rejected, Pending.
 
-##License
+## License
 Feedback's Magento 2 module is released under the Open Software License 3.0 (OSL-3.0).
 
-##Support
+## Support
 If you have concerns or questions, please send an email to support@krishaweb.com with all relevant details that are needed to investigate or resolve an issue.
 
 
